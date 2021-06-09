@@ -5,32 +5,18 @@ import Planets from './planets/Planets';
 import Starships from './starships/Starships';
 
 export default function Pages(){
-    const [page, setPage] = useState('about')
 
-    function renderPage(){
-        switch (page) {
-            case "characters":
-                return <Characters />;
-
-            case "starships":
-                return <Starships />;
-
-            case "planets":
-                return <Planets />;
-        
-            default:
-                return <About />;
-        }
-    }
     return(
         <div>
             <nav>
-                <button onClick={() => setPage("about")}>About</button>
-                <button onClick={() => setPage("characters")}>Characters</button>
-                <button onClick={() => setPage("starships")}>Starships</button>
-                <button onClick={() => setPage("planets")}>Planets</button>
+                <button>About</button>
+                <button>Characters</button>
+                <button>Starships</button>
+                <button>Planets</button>
             </nav>
-            {renderPage()}
+            <div>
+                {/* Individual Page goes Here (About/Starships/etc.) */}
+            </div>
         </div>
     )
 };
