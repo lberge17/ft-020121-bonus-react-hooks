@@ -1,3 +1,3 @@
 export async function fetchSWAPI(arg){
-    return await fetch(`https://swapi.dev/api/${arg}`).then(r => r.json())
+    return await fetch(`http://localhost:3000/${arg}`).then(r => r.json())
 }

@@ -1,0 +1,23 @@
+{
+    "starships": [
+        {"name": "Ebon Hawk"},
+        {"name": "Millenium Falcon"},
+        {"name": "X-Wing"},
+        {"name": "Y-Wing"}
+    ], 
+    "people": [
+        {"name": "Obi-Wan Kenobi"},
+        {"name": "Luke Skywalker"},
+        {"name": "Princess Leia"},
+        {"name": "Padme"},
+        {"name": "Anakin"}
+    ],
+    "planets": [
+        {"name": "Tatooine"},
+        {"name": "Naboo"},
+        {"name": "Coruscant"},
+        {"name": "Hoth"},
+        {"name": "Alderaan"},
+        {"name": "Bespin"}
+    ]
+}

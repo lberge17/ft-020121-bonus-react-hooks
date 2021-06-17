@@ -1,25 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { fetchSWAPI } from '../utils';
+import { connect } from 'react-redux';
+import { setPeople } from '../../redux/peopleSlice';
 
-export default function Characters() {
-    const [characters, setCharacters] = useState([])
+function Characters({characters, setCharacters}) {
 
-    // useEffect
     useEffect(() => {
         console.log("mounting characters")
         fetchSWAPI("people")
-            .then(({results}) => setCharacters(results))
+            .then(data => setCharacters(data))
         
         return () => {
             console.log("unmounting characters")
-            setCharacters([])
         }
-    }, [])
+    }, [setCharacters])
 
     // componentDidUpdate + componentDidMount
-    useEffect(() => {
-        console.log("updating characters")
-    }, [characters])
+    // useEffect(() => {
+    //     console.log("updating characters")
+    // }, [characters])
 
     return (
         <div>
@@ -30,3 +29,17 @@ export default function Characters() {
         </div>
     );
 };
+
+function mapStateToProps(state){
+    return {
+        characters: state.people
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+        setCharacters: (people) => dispatch(setPeople(people))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Characters);
