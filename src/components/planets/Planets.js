@@ -1,19 +1,21 @@
 import React, { useEffect } from 'react';
 import { fetchSWAPI } from '../utils';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { setPlanets } from '../../redux/planetsSlice';
 
-function Planets({planets, setPlanets}) {
+function Planets() {
+    const planets = useSelector(state => state.planets);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         console.log("mounting planets")
         fetchSWAPI("planets")
-            .then(data => setPlanets(data))
+            .then(data => dispatch(setPlanets(data)))
 
         return () => {
             console.log("unmounting planets")
         }
-    }, [setPlanets])
+    }, [])
 
     return (
         <div>
@@ -25,16 +27,4 @@ function Planets({planets, setPlanets}) {
     );
 };
 
-function mapStateToProps(state){
-    return {
-        planets: state.planets
-    }
-}
-
-function mapDispatchToProps(dispatch){
-    return {
-        setPlanets: (planets) => dispatch(setPlanets(planets))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Planets)
+export default Planets

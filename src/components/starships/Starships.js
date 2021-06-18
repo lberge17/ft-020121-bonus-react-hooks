@@ -1,19 +1,21 @@
 import React, { useEffect } from 'react';
 import { fetchSWAPI } from '../utils';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { setStarships } from '../../redux/starshipsSlice';
 
-function Starships({starships, setStarships}) {
+function Starships() {
+    const starships = useSelector(state => state.starships);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         console.log("mounting starships")
         fetchSWAPI("starships")
-            .then(data => setStarships(data))
+            .then(data => dispatch(setStarships(data)))
 
         return () => {
             console.log("unmounting starships")
         }
-    }, [setStarships])
+    }, [])
 
     return (
         <div>
@@ -24,17 +26,5 @@ function Starships({starships, setStarships}) {
         </div>
     );
 }
- 
-function mapStateToProps(state){
-    return {
-        starships: state.starships
-    }
-}
 
-function mapDispatchToProps(dispatch){
-    return {
-        setStarships: (starships) => dispatch(setStarships(starships))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Starships);
+export default Starships;
